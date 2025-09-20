@@ -1,5 +1,5 @@
 # bilevel_anisotropic_regularization
-This repository contains MATLAB files for spatially variant anisotropic regularization for lineat inverse problems.  
+This repository contains MATLAB files for spatially variant anisotropic regularization for linear inverse problems.  
 The codes accompany the paper: 
 
 "Automatic nonstationary anisotropic Tikhonov regularization through bilevel optimization" - Gazzola and Gholami, arXive, 2024.
