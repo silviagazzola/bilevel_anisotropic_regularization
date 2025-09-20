@@ -69,7 +69,7 @@ coeffmatr_DP = G'*G + gamma_DP*(D'*D);
 m_DP = coeffmatr_DP\(G'*Y(:)); % reconstruction
 
 %% compare with `partially' anisotropic (pa) Tikhonov with std derivative and reg parameter chosen according to the discrepancy principle
-fcn = @(gamma)smoothsmoothulwithgrad_pa(gamma, G, Y(:), epsilon, xi, Dx, Dz,Dxs, Dzs, nx,nz, beta2, sigma1, sigma2);
+fcn = @(gamma)smoothulwithgrad_pa(gamma, G, Y(:), epsilon, xi, Dx, Dz,Dxs, Dzs, nx,nz, beta2, sigma1, sigma2);
 D = @(x)[sigma1*(cos(x(1:nxnz)).*Dx + sin(x(1:nxnz)).*Dz)
          sigma2*(-sin(x(1:nxnz)).*Dx + cos(x(1:nxnz)).*Dz)];
 coeffmatr = @(x)(G'*G + x(end)*((D(x))'*(D(x))));
@@ -111,7 +111,7 @@ m_pa = coeffmatr\(G'*Y(:));
 %% compare with fully anisotropic Tikhonov with std derivative and reg parameter chosen according to the discrepancy principle
 % NOTE: the ordering of the sigmas and thetas is swapped w.r.t. the paper. 
 % I.e., gamma = [theta; sigmax; reg_parameter];
-fcn = @(gamma)smoothsmoothulwithgrad(gamma, G, Y(:), epsilon, xi, Dx, Dz, Dxs, Dzs, nx, nz, beta2, beta1);
+fcn = @(gamma)smoothulwithgrad(gamma, G, Y(:), epsilon, xi, Dx, Dz, Dxs, Dzs, nx, nz, beta2, beta1);
 D = @(x)[x(nxnz+1:2*nxnz).*(cos(x(1:nxnz)).*Dx + sin(x(1:nxnz)).*Dz)
          (1 - x(nxnz+1:2*nxnz)).*(-sin(x(1:nxnz)).*Dx + cos(x(1:nxnz)).*Dz)];
 coeffmatr = @(x)(G'*G + x(2*nxnz+1)*((D(x))'*(D(x))));
